@@ -11,7 +11,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     await new Promise((r) => setTimeout(r, 1000));

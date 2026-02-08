@@ -1,8 +1,4 @@
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout({ children }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-neutral-950 relative overflow-hidden">
       {/* Subtle geometric background */}

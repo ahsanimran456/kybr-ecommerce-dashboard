@@ -1,39 +1,21 @@
 "use client";
 
 import { Search, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, ReactNode } from "react";
+import { useState } from "react";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface Column<T = any> {
-  key: string;
-  label: string;
-  render?: (item: T) => ReactNode;
-  className?: string;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-interface DataTableProps<T = any> {
-  columns: Column<T>[];
-  data: T[];
-  searchPlaceholder?: string;
-  searchKey?: string;
-  itemsPerPage?: number;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function DataTable<T = any>({
+export default function DataTable({
   columns,
   data,
   searchPlaceholder = "Search...",
   searchKey,
   itemsPerPage = 10,
-}: DataTableProps<T>) {
+}) {
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   const filteredData = searchKey
     ? data.filter((item) =>
-        String((item as Record<string, unknown>)[searchKey]).toLowerCase().includes(search.toLowerCase())
+        String(item[searchKey]).toLowerCase().includes(search.toLowerCase())
       )
     : data;
 
@@ -81,7 +63,7 @@ export default function DataTable<T = any>({
                 <tr key={idx} className="hover:bg-neutral-50 transition-colors">
                   {columns.map((col) => (
                     <td key={col.key} className={`px-5 py-4 text-sm text-neutral-700 ${col.className || ""}`}>
-                      {col.render ? col.render(item) : String((item as Record<string, unknown>)[col.key] ?? "")}
+                      {col.render ? col.render(item) : String(item[col.key] ?? "")}
                     </td>
                   ))}
                 </tr>

@@ -24,14 +24,8 @@ export default function CustomerDetailPage() {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Header */}
       <div className="flex items-center gap-4">
-        <Link
-          href="/customers"
-          className="p-2 text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-        </Link>
+        <Link href="/customers" className="p-2 text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 rounded-lg transition-colors"><ArrowLeft className="w-5 h-5" /></Link>
         <div>
           <h1 className="text-2xl font-bold text-neutral-900 tracking-tight">Customer Details</h1>
           <p className="text-sm text-neutral-500 mt-1">{customer.name}</p>
@@ -39,41 +33,23 @@ export default function CustomerDetailPage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Customer Profile Card */}
         <div className="bg-white rounded-xl border border-neutral-200/80 p-6">
           <div className="text-center mb-6">
             <div className="w-20 h-20 bg-neutral-900 rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
               {customer.name.split(" ").map((n) => n[0]).join("")}
             </div>
             <h3 className="text-xl font-bold text-neutral-900">{customer.name}</h3>
-            <div className="mt-2">
-              <StatusBadge status={customer.status} />
-            </div>
+            <div className="mt-2"><StatusBadge status={customer.status} /></div>
           </div>
-
           <div className="space-y-4">
-            <div className="flex items-center gap-3 text-sm">
-              <Mail className="w-4 h-4 text-neutral-400" />
-              <span className="text-neutral-600">{customer.email}</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Phone className="w-4 h-4 text-neutral-400" />
-              <span className="text-neutral-600">{customer.phone}</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm">
-              <MapPin className="w-4 h-4 text-neutral-400" />
-              <span className="text-neutral-600">{customer.city}, UAE</span>
-            </div>
-            <div className="flex items-center gap-3 text-sm">
-              <Calendar className="w-4 h-4 text-neutral-400" />
-              <span className="text-neutral-600">Joined {formatDate(customer.joinedAt)}</span>
-            </div>
+            <div className="flex items-center gap-3 text-sm"><Mail className="w-4 h-4 text-neutral-400" /><span className="text-neutral-600">{customer.email}</span></div>
+            <div className="flex items-center gap-3 text-sm"><Phone className="w-4 h-4 text-neutral-400" /><span className="text-neutral-600">{customer.phone}</span></div>
+            <div className="flex items-center gap-3 text-sm"><MapPin className="w-4 h-4 text-neutral-400" /><span className="text-neutral-600">{customer.city}, UAE</span></div>
+            <div className="flex items-center gap-3 text-sm"><Calendar className="w-4 h-4 text-neutral-400" /><span className="text-neutral-600">Joined {formatDate(customer.joinedAt)}</span></div>
           </div>
         </div>
 
-        {/* Stats & Orders */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div className="bg-white rounded-xl border border-neutral-200/80 p-4 text-center group hover:bg-neutral-900 transition-colors duration-300">
               <ShoppingCart className="w-5 h-5 text-neutral-400 mx-auto mb-2 group-hover:text-white transition-colors" />
@@ -97,7 +73,6 @@ export default function CustomerDetailPage() {
             </div>
           </div>
 
-          {/* Order History */}
           <div className="bg-white rounded-xl border border-neutral-200/80 p-6">
             <h3 className="text-lg font-semibold text-neutral-900 mb-4">Order History</h3>
             {customerOrders.length > 0 ? (
@@ -114,11 +89,7 @@ export default function CustomerDetailPage() {
                   <tbody className="divide-y divide-neutral-100">
                     {customerOrders.map((order) => (
                       <tr key={order.id} className="hover:bg-neutral-50 transition-colors">
-                        <td className="px-4 py-3">
-                          <Link href={`/orders/${order.id}`} className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors">
-                            {order.orderNumber}
-                          </Link>
-                        </td>
+                        <td className="px-4 py-3"><Link href={`/orders/${order.id}`} className="text-sm font-semibold text-neutral-900 hover:text-neutral-600 transition-colors">{order.orderNumber}</Link></td>
                         <td className="px-4 py-3 text-sm text-neutral-500">{formatDateTime(order.createdAt)}</td>
                         <td className="px-4 py-3 text-sm font-semibold text-neutral-900">{formatCurrency(order.total)}</td>
                         <td className="px-4 py-3"><StatusBadge status={order.status} /></td>

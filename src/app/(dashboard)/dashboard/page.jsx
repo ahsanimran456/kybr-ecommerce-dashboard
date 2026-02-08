@@ -96,7 +96,7 @@ export default function DashboardPage() {
                     boxShadow: "0 4px 12px rgb(0 0 0 / 0.08)",
                     backgroundColor: "#fff",
                   }}
-                  formatter={(value) => [formatCurrency(value as number), "Revenue"]}
+                  formatter={(value) => [formatCurrency(value), "Revenue"]}
                 />
                 <Area type="monotone" dataKey="revenue" stroke="#171717" strokeWidth={2} fill="url(#colorRevenue)" />
               </AreaChart>
@@ -125,7 +125,7 @@ export default function DashboardPage() {
                     boxShadow: "0 4px 12px rgb(0 0 0 / 0.08)",
                     backgroundColor: "#fff",
                   }}
-                  formatter={(value) => [value as number, "Sales"]}
+                  formatter={(value) => [value, "Sales"]}
                 />
                 <Bar dataKey="sales" fill="#404040" radius={[0, 6, 6, 0]} barSize={20} />
               </BarChart>

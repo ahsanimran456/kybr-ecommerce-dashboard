@@ -1,16 +1,7 @@
-import { LucideIcon, TrendingUp, TrendingDown } from "lucide-react";
+import { TrendingUp, TrendingDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface StatsCardProps {
-  title: string;
-  value: string;
-  change: number;
-  icon: LucideIcon;
-  iconColor?: string;
-  iconBg?: string;
-}
-
-export default function StatsCard({ title, value, change, icon: Icon }: StatsCardProps) {
+export default function StatsCard({ title, value, change, icon: Icon }) {
   const isPositive = change >= 0;
 
   return (

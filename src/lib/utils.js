@@ -1,10 +1,10 @@
-import { clsx, type ClassValue } from "clsx";
+import { clsx } from "clsx";
 
-export function cn(...inputs: ClassValue[]) {
+export function cn(...inputs) {
   return clsx(inputs);
 }
 
-export function formatCurrency(amount: number): string {
+export function formatCurrency(amount) {
   return new Intl.NumberFormat("en-AE", {
     style: "currency",
     currency: "AED",
@@ -12,7 +12,7 @@ export function formatCurrency(amount: number): string {
   }).format(amount);
 }
 
-export function formatDate(date: string | Date): string {
+export function formatDate(date) {
   return new Intl.DateTimeFormat("en-AE", {
     year: "numeric",
     month: "short",
@@ -20,7 +20,7 @@ export function formatDate(date: string | Date): string {
   }).format(new Date(date));
 }
 
-export function formatDateTime(date: string | Date): string {
+export function formatDateTime(date) {
   return new Intl.DateTimeFormat("en-AE", {
     year: "numeric",
     month: "short",
@@ -30,8 +30,8 @@ export function formatDateTime(date: string | Date): string {
   }).format(new Date(date));
 }
 
-export function getStatusColor(status: string): string {
-  const colors: Record<string, string> = {
+export function getStatusColor(status) {
+  const colors = {
     active: "bg-neutral-900 text-white",
     inactive: "bg-neutral-100 text-neutral-500",
     pending: "bg-neutral-200 text-neutral-700",

@@ -17,7 +17,7 @@ export default function SignupPage() {
     confirmPassword: "",
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match");

@@ -4,11 +4,7 @@ import Sidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import { useState } from "react";
 
-export default function DashboardLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function DashboardLayout({ children }) {
   const [sidebarCollapsed] = useState(false);
 
   return (

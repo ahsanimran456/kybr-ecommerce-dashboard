@@ -1,73 +1,6 @@
 // Mock data for the admin dashboard
 
-export interface Product {
-  id: string;
-  name: string;
-  sku: string;
-  category: string;
-  price: number;
-  comparePrice: number;
-  stock: number;
-  status: "active" | "inactive";
-  image: string;
-  description: string;
-  createdAt: string;
-}
-
-export interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  description: string;
-  productCount: number;
-  status: "active" | "inactive";
-  image: string;
-  createdAt: string;
-}
-
-export interface Customer {
-  id: string;
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  totalOrders: number;
-  totalSpent: number;
-  status: "active" | "inactive";
-  joinedAt: string;
-  lastOrder: string;
-  avatar: string;
-}
-
-export interface Order {
-  id: string;
-  orderNumber: string;
-  customer: { name: string; email: string; phone: string };
-  items: { name: string; quantity: number; price: number }[];
-  total: number;
-  subtotal: number;
-  shipping: number;
-  tax: number;
-  status: "pending" | "processing" | "shipped" | "delivered" | "cancelled" | "refunded";
-  paymentMethod: string;
-  paymentStatus: "paid" | "pending" | "refunded";
-  shippingAddress: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface DashboardStats {
-  totalRevenue: number;
-  totalOrders: number;
-  totalCustomers: number;
-  totalProducts: number;
-  revenueGrowth: number;
-  ordersGrowth: number;
-  customersGrowth: number;
-  productsGrowth: number;
-}
-
-export const dashboardStats: DashboardStats = {
+export const dashboardStats = {
   totalRevenue: 284750.50,
   totalOrders: 1247,
   totalCustomers: 3842,
@@ -101,7 +34,7 @@ export const topProducts = [
   { name: "Silk Scarf Collection", sales: 145, revenue: 14500 },
 ];
 
-export const recentOrders: Order[] = [
+export const recentOrders = [
   {
     id: "1",
     orderNumber: "ORD-2026-001",
@@ -198,7 +131,7 @@ export const recentOrders: Order[] = [
   },
 ];
 
-export const products: Product[] = [
+export const products = [
   {
     id: "1",
     name: "Premium Arabic Oud Perfume",
@@ -305,7 +238,7 @@ export const products: Product[] = [
   },
 ];
 
-export const categories: Category[] = [
+export const categories = [
   { id: "1", name: "Perfumes", slug: "perfumes", description: "Luxury fragrances and oud collections", productCount: 45, status: "active", image: "/categories/perfumes.jpg", createdAt: "2025-06-01T10:00:00Z" },
   { id: "2", name: "Watches", slug: "watches", description: "Premium watches and timepieces", productCount: 32, status: "active", image: "/categories/watches.jpg", createdAt: "2025-06-01T10:00:00Z" },
   { id: "3", name: "Bags", slug: "bags", description: "Designer bags and handbags", productCount: 28, status: "active", image: "/categories/bags.jpg", createdAt: "2025-06-01T10:00:00Z" },
@@ -316,7 +249,7 @@ export const categories: Category[] = [
   { id: "8", name: "Home Decor", slug: "home-decor", description: "Arabian-inspired home decorations", productCount: 19, status: "inactive", image: "/categories/decor.jpg", createdAt: "2025-08-01T10:00:00Z" },
 ];
 
-export const customers: Customer[] = [
+export const customers = [
   { id: "1", name: "Ahmed Al Maktoum", email: "ahmed@email.com", phone: "+971 50 123 4567", city: "Dubai", totalOrders: 12, totalSpent: 8450, status: "active", joinedAt: "2025-03-15T10:00:00Z", lastOrder: "2026-02-07T10:30:00Z", avatar: "" },
   { id: "2", name: "Fatima Hassan", email: "fatima@email.com", phone: "+971 55 234 5678", city: "Abu Dhabi", totalOrders: 8, totalSpent: 5200, status: "active", joinedAt: "2025-04-20T10:00:00Z", lastOrder: "2026-02-07T14:20:00Z", avatar: "" },
   { id: "3", name: "Omar Sheikh", email: "omar@email.com", phone: "+971 52 345 6789", city: "Sharjah", totalOrders: 5, totalSpent: 2100, status: "active", joinedAt: "2025-06-10T10:00:00Z", lastOrder: "2026-02-06T09:15:00Z", avatar: "" },
@@ -327,7 +260,7 @@ export const customers: Customer[] = [
   { id: "8", name: "Sara Mohammed", email: "sara@email.com", phone: "+971 55 890 1234", city: "Dubai", totalOrders: 9, totalSpent: 6800, status: "active", joinedAt: "2025-05-10T10:00:00Z", lastOrder: "2026-01-28T09:00:00Z", avatar: "" },
 ];
 
-export const orders: Order[] = [
+export const orders = [
   ...recentOrders,
   {
     id: "6",
