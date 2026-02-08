@@ -8,7 +8,7 @@ import { ArrowLeft, Upload, Save } from "lucide-react";
 export default function AddCategoryPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({ name: "", slug: "", description: "", status: "active" });
+  const [formData, setFormData] =  useState({ name: "", slug: "", description: "", status: "active" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
