@@ -41,9 +41,10 @@ export default function LoginPage() {
         user:   result.data.data?.user ||result?.data?.user ,
         token:  result.data.data?.session?.access_token || result.data.data?.session?.access_token ,
         session:  result.data.data?.session || result.data.data?.session ,
+        permission:  result.data.data?.permissions || result.data.data?.permissions ,
       }));
       toast.success("Login successful!");
-      // router.push("/dashboard");
+      router.push("/dashboard");
     } else {
       dispatch(loginFailed(result.message));
       toast.error(result.message || "Login failed");
@@ -129,7 +130,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-white text-neutral-900 font-semibold rounded-xl hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-neutral-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full py-3 bg-white text-neutral-900 cursor-pointer font-semibold rounded-xl hover:bg-neutral-200 focus:outline-none focus:ring-2 focus:ring-white/30 focus:ring-offset-2 focus:ring-offset-neutral-900 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {loading ? (
               <span className="flex items-center justify-center gap-2">
