@@ -4,18 +4,50 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Eye, EyeOff, Mail, Lock, Store } from "lucide-react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginSuccess, loginFailed, setLoading as setAuthLoading } from "@/store/slices/authSlice";
+import { api } from "@/lib/api";
+import toast from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.auth);
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    router.push("/dashboard");
+
+    // Validate inputs
+    if (!formData.email || !formData.password) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+
+    dispatch(setAuthLoading(true));
+
+    // Call login API
+    const result = await api.post("/auth/admin/login", {
+      email: formData.email,
+      password: formData.password,
+    });
+
+    if (result.success) {
+      console.log(result,"result");
+      
+      // Save user + token in Redux store
+      dispatch(loginSuccess({
+        user:   result.data.data?.user ||result?.data?.user ,
+        token:  result.data.data?.session?.access_token || result.data.data?.session?.access_token ,
+        session:  result.data.data?.session || result.data.data?.session ,
+      }));
+      toast.success("Login successful!");
+      // router.push("/dashboard");
+    } else {
+      dispatch(loginFailed(result.message));
+      toast.error(result.message || "Login failed");
+    }
   };
 
   return (
@@ -85,6 +117,13 @@ export default function LoginPage() {
               Forgot password?
             </button>
           </div>
+
+          {/* Error Message */}
+          {error && (
+            <div className="p-3 bg-red-500/10 border border-red-500/20 rounded-xl">
+              <p className="text-sm text-red-400 text-center">{error}</p>
+            </div>
+          )}
 
           {/* Submit */}
           <button

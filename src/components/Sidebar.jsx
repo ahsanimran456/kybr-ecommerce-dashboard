@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
   Package,
@@ -14,6 +14,9 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/slices/authSlice";
+import toast from "react-hot-toast";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -25,7 +28,15 @@ const navigation = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    toast.success("Logged out successfully");
+    router.push("/login");
+  };
 
   return (
     <aside
@@ -87,13 +98,13 @@ export default function Sidebar() {
           />
           {!collapsed && <span>Collapse</span>}
         </button>
-        <Link
-          href="/login"
-          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-neutral-500 hover:bg-neutral-800/80 hover:text-neutral-300 transition-all"
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-neutral-500 hover:bg-neutral-800/80 hover:text-neutral-300 transition-all w-full"
         >
           <LogOut className="w-5 h-5 shrink-0" />
           {!collapsed && <span>Logout</span>}
-        </Link>
+        </button>
       </div>
     </aside>
   );

@@ -1,8 +1,11 @@
 "use client";
 
 import { Bell, Search, User } from "lucide-react";
+import { useSelector } from "react-redux";
 
 export default function Header() {
+  const { user } = useSelector((state) => state.auth);
+
   return (
     <header className="sticky top-0 z-30 h-16 bg-white/80 backdrop-blur-xl border-b border-neutral-200/80 flex items-center justify-between px-6">
       {/* Search */}
@@ -28,8 +31,12 @@ export default function Header() {
         {/* Profile */}
         <div className="flex items-center gap-3 pl-3 border-l border-neutral-200">
           <div className="text-right hidden sm:block">
-            <p className="text-sm font-semibold text-neutral-900">Admin User</p>
-            <p className="text-xs text-neutral-500">Super Admin</p>
+            <p className="text-sm font-semibold text-neutral-900">
+              {user?.name || "Admin User"}
+            </p>
+            <p className="text-xs text-neutral-500">
+              {user?.role || "Super Admin"}
+            </p>
           </div>
           <div className="w-9 h-9 bg-neutral-900 rounded-full flex items-center justify-center ring-2 ring-neutral-200">
             <User className="w-4 h-4 text-white" />
