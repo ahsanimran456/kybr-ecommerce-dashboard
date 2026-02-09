@@ -113,13 +113,17 @@ export const api = {
   post: (endpoint, data, headers = {}) =>
     makeRequest(endpoint, { method: "POST", data, headers }),
 
-  // PUT request - full update
-  put: (endpoint, data, headers = {}) =>
-    makeRequest(endpoint, { method: "PUT", data, headers }),
+  // PUT request - full update (auto-detects FormData)
+  put: (endpoint, data, headers = {}) => {
+    const isFormData = typeof FormData !== "undefined" && data instanceof FormData;
+    return makeRequest(endpoint, { method: "PUT", data, headers, isFormData });
+  },
 
-  // PATCH request - partial update
-  patch: (endpoint, data, headers = {}) =>
-    makeRequest(endpoint, { method: "PATCH", data, headers }),
+  // PATCH request - partial update (auto-detects FormData)
+  patch: (endpoint, data, headers = {}) => {
+    const isFormData = typeof FormData !== "undefined" && data instanceof FormData;
+    return makeRequest(endpoint, { method: "PATCH", data, headers, isFormData });
+  },
 
   // DELETE request - remove data
   delete: (endpoint, headers = {}) =>
